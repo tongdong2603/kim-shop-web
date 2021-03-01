@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// global import
+import React, { FunctionComponent } from 'react';
+import { Provider } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-function App() {
+// Local import
+// import HttpService from '@services/Http';
+import ListRouter from '@routes/index';
+import { store } from '@redux/store';
+import History from '@/shared/libs/history';
+
+// i18n
+import '@/i18n';
+
+const App: FunctionComponent = () => {
+  History.history = useHistory();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ListRouter />
+    </Provider>
   );
-}
-
+};
 export default App;
